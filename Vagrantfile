@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
       # please see the online documentation at vagrantup.com.
       master_config.vm.hostname = "puppet.nacswildcats.dev"
       # Every Vagrant virtual environment requires a box to build off of.
-      master_config.vm.box = "ubuntu/trusty64"
+      master_config.vm.box = "precise64"
     
       
       # If you're using VMWare Fusion rather than Virtualbox, you'll want to use this box_url instead
@@ -58,10 +58,24 @@ Vagrant.configure("2") do |config|
     windows_config.vm.network :private_network, ip: "192.168.2.100"
     #windows_condfig.vm.network "private_network", ip: "192.168.2.100"
 
+    windows_config.vm.communicator = "winrm"
+
     # Provider
     windows_config.vm.provider "virtualbox" do |v|
       v.gui =true
     end
   end  
   
+  config.vm.define :win7 do |win7_config|
+    win7_config.vm.box = "ferventcoder/win7pro-x64-nocm-lite"
+    win7_config.vm.guest = :windows
+
+    win7_config.vm.communicator = "winrm"
+
+    # Provider
+    win7_config.vm.provider "virtualbox" do |v|
+      v.gui = true
+    end
+  end
+
 end

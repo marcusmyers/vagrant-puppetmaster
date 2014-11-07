@@ -2,17 +2,17 @@
 
 node default {
   
-  host { 'puppet.grahamgilbert.dev':
+  host { 'puppet.nacswildcats.dev':
     ensure       => 'present',
     host_aliases => ['puppet'],
-    ip           => '192.168.33.10',
+    ip           => '192.168.2.10',
     target       => '/etc/hosts',
   }
 
   
   package {'puppetmaster':
     ensure  =>  latest,
-    require => Host['puppet.grahamgilbert.dev'],
+    require => Host['puppet.nacswildcats.dev'],
   }
     
   # Configure puppetdb and its underlying database
