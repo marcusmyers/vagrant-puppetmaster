@@ -12,13 +12,10 @@ Vagrant.configure("2") do |config|
       # All Vagrant configuration is done here. The most common configuration
       # options are documented and commented below. For a complete reference,
       # please see the online documentation at vagrantup.com.
-      master_config.vm.hostname = "puppet.grahamgilbert.dev"
+      master_config.vm.hostname = "puppet.nacswildcats.dev"
       # Every Vagrant virtual environment requires a box to build off of.
-      master_config.vm.box = "precise64"
+      master_config.vm.box = "ubuntu/trusty64"
     
-      # The url from where the 'master_config.vm.box' box will be fetched if it
-      # doesn't already exist on the user's system.
-      master_config.vm.box_url = "http://files.vagrantup.com/precise64.box"
       
       # If you're using VMWare Fusion rather than Virtualbox, you'll want to use this box_url instead
       # master_config.vm.box_url = "http://files.vagrantup.com/precise64_vmware_fusion.box"
@@ -27,7 +24,7 @@ Vagrant.configure("2") do |config|
       # via the IP. Host-only networks can talk to the host machine as well as
       # any other machines on the same network, but cannot be accessed (through this
       # network interface) by any external networks.
-      master_config.vm.network :private_network, ip: "192.168.33.10"
+      master_config.vm.network :private_network, ip: "192.168.2.10"
         
       # Share an additional folder to the guest VM. The first argument is
       # an identifier, the second is the path on the guest to mount the

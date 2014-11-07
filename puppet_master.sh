@@ -4,7 +4,7 @@
 #
 set -e
 
-REPO_DEB_URL="http://apt.puppetlabs.com/puppetlabs-release-precise.deb"
+REPO_DEB_URL="http://apt.puppetlabs.com/puppetlabs-release-trusty.deb"
 
 #--------------------------------------------------------------------
 # NO TUNABLES BELOW THIS POINT
