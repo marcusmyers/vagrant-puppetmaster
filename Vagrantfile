@@ -3,7 +3,12 @@
 
 Vagrant.configure("2") do |config|
   config.vm.define :master do |master_config|
-
+    # Supports local cache, don't wast bandwitdh
+    # vagrant plugin install vagrant-cachier
+    # https://github.com/fgrehm/vagrant-cachier 
+    if Vagrant.has_plugin?("vagrant-cachier")
+      config.cache.auto_detect = true
+    end
       # All Vagrant configuration is done here. The most common configuration
       # options are documented and commented below. For a complete reference,
       # please see the online documentation at vagrantup.com.
@@ -29,8 +34,13 @@ Vagrant.configure("2") do |config|
       # folder, and the third is the path on the host to the actual folder.
       
       master_config.vm.provision :shell, :path => "puppet_master.sh"
+      master_config.vm.provision :shell, :path => "puppet_r10k.sh"
       # Enable the Puppet provisioner
-      master_config.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "default.pp"
+      master_config.vm.provision :puppet do |puppet|
+        puppet.manifests_path = "VagrantConf/manifests"
+        puppet.manifest_file  = "default.pp"
+        puppet.options        = "--verbose --modulepath /home/vagrant/modules"
+      end 
 
     master_config.vm.synced_folder "puppet/manifests", "/etc/puppet/manifests"
     master_config.vm.synced_folder "puppet/modules", "/etc/puppet/modules"
