@@ -11,7 +11,7 @@ mod 'puppetlabs/concat'
 
 # Official contains a bug wrt nologin shell
 mod 'dashboard',
-  :git => 'git://github.com/andersbs/puppetlabs-dashboard.git'
+  :git => 'https://github.com/andersbs/puppetlabs-dashboard.git'
 
 # Updated
 mod 'puppetlabs/firewall'

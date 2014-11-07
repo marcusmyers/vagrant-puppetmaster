@@ -46,6 +46,25 @@ Vagrant.configure("2") do |config|
     master_config.vm.synced_folder "puppet/modules", "/etc/puppet/modules"
     master_config.vm.synced_folder "puppet/hieradata", "/etc/puppet/hieradata"
   end
-  
+
+  config.vm.define :xp do |windows_config|
+    # Configure base box parameters
+    windows_config.vm.box = "windowsxp"
+    windows_config.vm.box_url = "http://tech.napoleonareaschools.org/wp-content/uploads/windowsxp.box"
+    windows_config.vm.guest = :windows
+
+    windows_config.vm.boot_timeout = 600
+    # Port forward WinRM and RDP
+    windows_config.vm.network :forwarded_port, guest: 3389, host: 3389
+    windows_config.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_correct: true
+    #windows_config.vm.network "public_network", :bridge => 'en4: USB Ethernet', ip: "192.168.2.100"
+    windows_config.vm.network :private_network, ip: "192.168.2.100"
+    #windows_condfig.vm.network "private_network", ip: "192.168.2.100"
+
+    # Provider
+    windows_config.vm.provider "virtualbox" do |v|
+      v.gui =true
+    end
+  end  
   
 end
