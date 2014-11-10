@@ -17,8 +17,8 @@ I wanted a full Puppet test environment that I could create and destroy easily. 
 
 ##The headlines
 <table>
-<tr><th>IP Address</th><td>192.168.33.10</td></tr>
-<tr><th>Dashboard URL</th><td>http://192.168.33.10:3000</td></tr>
+<tr><th>IP Address</th><td>192.168.2.10</td></tr>
+<tr><th>Dashboard URL</th><td>http://192.168.2.10:3000</td></tr>
 <tr><th>Put your manifests in:</th><td>puppet/manifests</td></tr>
 <tr><th>Put your modules in:</th><td>puppet/modules</td></tr>
 <tr><th>If you are using Hiera edit:</th><td>puppet/hiera.yaml</td></tr>
@@ -32,7 +32,7 @@ This will set up the latest version of Puppet running as a master using the buil
 
 Place your manifests and modules in ``puppet/manifests`` and ``puppet/modules`` respectively.
 
-The server has the IP address 192.168.33.10 - if your LAN runs on this subnet, make sure you change it in the Vagrantfile.
+The server has the IP address 192.168.2.10 - if your LAN runs on this subnet, make sure you change it in the Vagrantfile.
 
 Other tweaks have been made to the configuration to make it more suitable for testing than the standard configuration:
 
@@ -43,7 +43,7 @@ These should be locked down to trusted hosts if using these techniques in produc
 
 ###Puppet Dashboard
 
-The Dashboard can be accessed at [http://192.168.33.10:3000](http://192.168.33.10:3000). This also runs using webbrick, which makes it unsuitable for a large scale deployment.
+The Dashboard can be accessed at [http://192.168.2.10:3000](http://192.168.2.10:3000). This also runs using webbrick, which makes it unsuitable for a large scale deployment.
 
 ###PuppetDB
 

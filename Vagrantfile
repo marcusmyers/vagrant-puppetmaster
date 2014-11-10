@@ -58,6 +58,8 @@ Vagrant.configure("2") do |config|
     windows_config.vm.network :private_network, ip: "192.168.2.100"
     #windows_condfig.vm.network "private_network", ip: "192.168.2.100"
 
+    windows_config.vm.provision :shell, :path => "firstboot.bat", :privileged => false
+
     windows_config.vm.communicator = "winrm"
 
     # Provider
@@ -69,13 +71,22 @@ Vagrant.configure("2") do |config|
   config.vm.define :win7 do |win7_config|
     win7_config.vm.box = "ferventcoder/win7pro-x64-nocm-lite"
     win7_config.vm.guest = :windows
+    win7_config.vm.provision :shell, :path => "firstboot7.bat"    
+
+    
+    win7_config.vm.network :private_network, ip: "192.168.2.101"
+    win7_config.vm.boot_timeout = 600
+    # Port forward WinRM and RDP
+    win7_config.vm.network :forwarded_port, guest: 3389, host: 33389
+    #win7_config.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_correct: true
 
     win7_config.vm.communicator = "winrm"
 
+
     # Provider
-    win7_config.vm.provider "virtualbox" do |v|
-      v.gui = true
-    end
+    #win7_config.vm.provider "virtualbox" do |v|
+    #  v.gui = true
+    #end
   end
 
 end
